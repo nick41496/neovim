@@ -1,4 +1,16 @@
-execute pathogen#infect()
+call plug#begin('~/.config/nvim/plug')
+  Plug 'junegunn/fzf.vim'
+  Plug 'Yggdroot/indentLine'
+  Plug 'itchyny/lightline.vim'
+  Plug 'neomake/neomake'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'rust-lang/rust.vim'
+  Plug 'Townk/vim-autoclose'
+  Plug 'tpope/vim-fugitive'
+  Plug 'slim-template/vim-slim'
+  Plug 'tpope/vim-surround'
+call plug#end()
+
 colorscheme monokai
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after runtimepath+=~/src/fzf
