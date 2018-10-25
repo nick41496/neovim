@@ -7,6 +7,8 @@ call plug#begin('~/.config/nvim/plug')
   Plug 'rust-lang/rust.vim'
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-fugitive'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
 call plug#end()
@@ -26,6 +28,9 @@ set relativenumber
 set scrolloff=7
 set splitbelow
 set splitright
+set textwidth=100
+set undodir=~/.config/nvim/undo
+set undofile
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -153,7 +158,18 @@ let g:vimshell_force_overwrite_statusline = 0
 map <C-p> :Files<cr>
 
 "Neomake
-"call neomake#configure#automake('w')
+let g:neomake_rubocop_maker = {
+      \ 'args': [
+      \   '--require', 'rubocop-rspec',
+      \   '--format', 'emacs',
+      \   '--force-exclusion',
+      \   '--display-cop-names'
+      \ ],
+      \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
+      \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
+      \ 'output_stream': 'stdout',
+      \ }
+call neomake#configure#automake('w')
 
 "C
 augroup C
