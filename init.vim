@@ -16,7 +16,7 @@ call plug#end()
 
 colorscheme monokai
 
-set runtimepath^=~/.vim runtimepath+=~/.vim/after runtimepath+=~/src/fzf
+set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
 
@@ -30,7 +30,6 @@ set scrolloff=7
 set splitbelow
 set splitright
 set textwidth=100
-set undodir=~/.config/nvim/undo
 set undofile
 
 nnoremap <C-J> <C-W><C-J>
