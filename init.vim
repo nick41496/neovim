@@ -170,7 +170,7 @@ let g:neomake_rubocop_maker = {
       \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
       \ 'output_stream': 'stdout',
       \ }
-"call neomake#configure#automake('w')
+call neomake#configure#automake('w')
 
 "C
 augroup C
