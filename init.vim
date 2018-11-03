@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plug')
   Plug 'tpope/vim-fugitive'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
+  Plug 'tpope/vim-rails'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
 call plug#end()
@@ -156,6 +157,7 @@ let g:vimshell_force_overwrite_statusline = 0
 
 "Fzf
 map <C-p> :Files<cr>
+map <C-M-p> :Buffers<cr>
 
 "Neomake
 let g:neomake_rubocop_maker = {
