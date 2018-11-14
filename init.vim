@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plug')
+call plug#begin(stdpath('config') . '/plug')
   Plug 'junegunn/fzf.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
@@ -7,6 +7,9 @@ call plug#begin('~/.config/nvim/plug')
   Plug 'rust-lang/rust.vim'
   Plug 'Townk/vim-autoclose'
   Plug 'tpope/vim-fugitive'
+  Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
+  Plug 'tpope/vim-rails'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
   Plug 'christoomey/vim-tmux-navigator'
@@ -14,7 +17,7 @@ call plug#end()
 
 colorscheme monokai
 
-set runtimepath^=~/.vim runtimepath+=~/.vim/after runtimepath+=~/src/fzf
+set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
 
@@ -29,6 +32,8 @@ set scrolloff=7
 set spell
 set splitbelow
 set splitright
+set textwidth=100
+set undofile
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -154,9 +159,21 @@ let g:vimshell_force_overwrite_statusline = 0
 
 "Fzf
 map <C-p> :Files<cr>
+map <C-M-p> :Buffers<cr>
 
 "Neomake
-"call neomake#configure#automake('w')
+let g:neomake_rubocop_maker = {
+      \ 'args': [
+      \   '--require', 'rubocop-rspec',
+      \   '--format', 'emacs',
+      \   '--force-exclusion',
+      \   '--display-cop-names'
+      \ ],
+      \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
+      \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
+      \ 'output_stream': 'stdout',
+      \ }
+call neomake#configure#automake('w')
 
 "C
 augroup C
