@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plug')
   Plug 'tpope/vim-fugitive'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
+  Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 colorscheme monokai
@@ -19,11 +20,13 @@ let mapleader = ","
 
 set clipboard=unnamed
 set colorcolumn=80,100
+set linebreak
 set list
 set noshowmode
 set nowrap
 set relativenumber
 set scrolloff=7
+set spell
 set splitbelow
 set splitright
 
