@@ -1,4 +1,4 @@
-call plug#begin('~/.config/nvim/plug')
+call plug#begin(stdpath('config') . '/plug')
   Plug 'junegunn/fzf.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
@@ -12,25 +12,27 @@ call plug#begin('~/.config/nvim/plug')
   Plug 'tpope/vim-rails'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
+  Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 colorscheme monokai
 
-set runtimepath^=~/.vim runtimepath+=~/.vim/after runtimepath+=~/src/fzf
+set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
 
 set clipboard=unnamed
 set colorcolumn=80,100
+set linebreak
 set list
 set noshowmode
 set nowrap
 set relativenumber
 set scrolloff=7
+set spell
 set splitbelow
 set splitright
 set textwidth=100
-set undodir=~/.config/nvim/undo
 set undofile
 
 nnoremap <C-J> <C-W><C-J>
