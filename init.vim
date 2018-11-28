@@ -174,6 +174,9 @@ let g:neomake_rubocop_maker = {
       \ }
 call neomake#configure#automake('w')
 
+nmap <leader>o :lopen<cr>
+nmap <leader>c :lclose<cr>
+
 "C
 augroup C
   autocmd!
