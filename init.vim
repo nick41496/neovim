@@ -26,7 +26,6 @@ set colorcolumn=80,100
 set linebreak
 set list
 set noshowmode
-set nowrap
 set relativenumber
 set scrolloff=7
 set spell
