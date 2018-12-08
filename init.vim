@@ -40,7 +40,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+tnoremap <Esc> <C-\><C-n>
+
 map <leader>app :cd ~/academia/projects/academia-app/<cr>
+map <leader>notes :cd ~/notes<cr>
 map <leader>wiki :cd ~/academia/wiki<cr>
 map <leader>vimrc :tabe $MYVIMRC<cr>
 augroup reload_vimrc
@@ -171,6 +174,13 @@ let g:neomake_rubocop_maker = {
       \ ],
       \ 'errorformat': '%f:%l:%c: %t: %m,%E%f:%l: %m',
       \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
+      \ 'output_stream': 'stdout',
+      \ }
+let g:neomake_eslint_maker = {
+      \ 'exe': 'yarn',
+      \ 'args': ['run', 'lint', '--format=compact'],
+      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+      \ '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
       \ 'output_stream': 'stdout',
       \ }
 call neomake#configure#automake('w')
