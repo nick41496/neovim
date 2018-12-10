@@ -39,8 +39,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-tnoremap <Esc> <C-\><C-n>
-
 map <leader>app :cd ~/academia/projects/academia-app/<cr>
 map <leader>notes :cd ~/notes<cr>
 map <leader>wiki :cd ~/academia/wiki<cr>
