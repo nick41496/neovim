@@ -1,4 +1,5 @@
 call plug#begin(stdpath('config') . '/plug')
+  Plug 'tpope/vim-dadbod'
   Plug 'junegunn/fzf.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
@@ -13,6 +14,7 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'vim-scripts/YankRing.vim'
 call plug#end()
 
 colorscheme monokai
@@ -48,16 +50,7 @@ augroup reload_vimrc
   autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-"Tags
-set tags=./.tags;/,.tags;/
-
-"Tabs
-set expandtab
-set smartindent
-set shiftwidth=2
-set tabstop=2
-
-"netrw
+"Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
@@ -85,6 +78,19 @@ endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+"Tags
+set tags=./.tags;/,.tags;/
+
+"Tabs
+set expandtab
+set smartindent
+set shiftwidth=2
+set tabstop=2
+
+"Fzf
+map <C-p> :Files<cr>
+map <C-M-p> :Buffers<cr>
 
 "Lightline
 let g:lightline = {
@@ -157,10 +163,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
-"Fzf
-map <C-p> :Files<cr>
-map <C-M-p> :Buffers<cr>
-
 "Neomake
 let g:neomake_rubocop_maker = {
       \ 'args': [
@@ -173,17 +175,14 @@ let g:neomake_rubocop_maker = {
       \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
       \ 'output_stream': 'stdout',
       \ }
-let g:neomake_eslint_maker = {
-      \ 'exe': 'yarn',
-      \ 'args': ['run', 'lint', '--format=compact'],
-      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-      \ '%W%f: line %l\, col %c\, Warning - %m,%-G,%-G%*\d problems%#',
-      \ 'output_stream': 'stdout',
-      \ }
+let g:neomake_javascript_enabled_makers = ['eslint']
 call neomake#configure#automake('w')
 
 nmap <leader>o :lopen<cr>
 nmap <leader>c :lclose<cr>
+
+"YankRing
+nnoremap <C-s> :YRShow<CR>
 
 "C
 augroup C
