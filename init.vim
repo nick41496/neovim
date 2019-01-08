@@ -41,9 +41,6 @@ map <leader>app :cd ~/academia/projects/academia-app/<cr>
 map <leader>notes :cd ~/notes<cr>
 map <leader>wiki :cd ~/academia/wiki<cr>
 
-"Buffers
-nnoremap <leader>bb :buffers<cr>:b<space>
-
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
