@@ -17,11 +17,11 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'vim-scripts/YankRing.vim'
 call plug#end()
 
-colorscheme monokai
-
 set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
+
+colorscheme monokai
 
 set clipboard=unnamed
 set colorcolumn=80,100
@@ -36,25 +36,25 @@ set splitright
 set textwidth=100
 set undofile
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
+"Academia directories
 map <leader>app :cd ~/academia/projects/academia-app/<cr>
 map <leader>notes :cd ~/notes<cr>
 map <leader>wiki :cd ~/academia/wiki<cr>
-map <leader>vimrc :tabe $MYVIMRC<cr>
-augroup reload_vimrc
-  autocmd!
-  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
-augroup END
+
+"Buffers
+nnoremap <leader>bb :buffers<cr>:b<space>
 
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 10
+
+"Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "Swap Windows
 function! MarkWindowSwap()
@@ -87,6 +87,13 @@ set expandtab
 set smartindent
 set shiftwidth=2
 set tabstop=2
+
+"Vimrc
+map <leader>vimrc :tabe $MYVIMRC<cr>
+augroup reload_vimrc
+  autocmd!
+  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+augroup END
 
 "Fzf
 map <C-p> :Files<cr>
