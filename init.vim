@@ -1,5 +1,4 @@
 call plug#begin(stdpath('config') . '/plug')
-  Plug 'tpope/vim-dadbod'
   Plug 'junegunn/fzf.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
@@ -7,7 +6,9 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'scrooloose/nerdcommenter'
   Plug 'rust-lang/rust.vim'
   Plug 'Townk/vim-autoclose'
+  Plug 'tpope/vim-dadbod'
   Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'tpope/vim-rails'
@@ -93,7 +94,7 @@ augroup reload_vimrc
 augroup END
 
 "Fzf
-map <C-p> :Files<cr>
+autocmd VimEnter * map <C-p> :Files<cr>
 map <C-M-p> :Buffers<cr>
 
 "Lightline
