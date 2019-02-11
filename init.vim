@@ -98,7 +98,7 @@ augroup reload_vimrc
 augroup END
 
 "Yank filename
-nmap yf :let @" = expand("%")<CR>
+nmap yf :let @* = expand("%:p")<CR>
 
 "Fzf
 autocmd VimEnter * map <C-p> :Files<CR>
