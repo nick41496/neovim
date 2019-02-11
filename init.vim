@@ -6,6 +6,7 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'scrooloose/nerdcommenter'
   Plug 'rust-lang/rust.vim'
   Plug 'Townk/vim-autoclose'
+  Plug 'kchmck/vim-coffee-script'
   Plug 'tpope/vim-dadbod'
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
@@ -38,9 +39,9 @@ set textwidth=100
 set undofile
 
 "Academia directories
-map <leader>app :cd ~/academia/projects/academia-app/<cr>
-map <leader>notes :cd ~/notes<cr>
-map <leader>wiki :cd ~/academia/wiki<cr>
+map <leader>app :cd ~/academia/projects/academia-app/<CR>
+map <leader>notes :cd ~/notes<CR>
+map <leader>wiki :cd ~/academia/wiki<CR>
 
 "Netrw
 let g:netrw_banner = 0
@@ -86,16 +87,22 @@ set smartindent
 set shiftwidth=2
 set tabstop=2
 
+"Whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
 "Vimrc
-map <leader>vimrc :tabe $MYVIMRC<cr>
+map <leader>vimrc :tabe $MYVIMRC<CR>
 augroup reload_vimrc
   autocmd!
   autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END
 
+"Yank filename
+nmap yf :let @" = expand("%")<CR>
+
 "Fzf
-autocmd VimEnter * map <C-p> :Files<cr>
-map <C-M-p> :Buffers<cr>
+autocmd VimEnter * map <C-p> :Files<CR>
+map <C-M-p> :Buffers<CR>
 
 "Lightline
 let g:lightline = {
@@ -183,8 +190,8 @@ let g:neomake_rubocop_maker = {
 let g:neomake_javascript_enabled_makers = ['eslint']
 call neomake#configure#automake('w')
 
-nmap <leader>o :lopen<cr>
-nmap <leader>c :lclose<cr>
+nmap <leader>o :lopen<CR>
+nmap <leader>c :lclose<CR>
 
 "YankRing
 nnoremap <C-s> :YRShow<CR>
