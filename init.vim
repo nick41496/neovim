@@ -1,5 +1,6 @@
 call plug#begin(stdpath('config') . '/plug')
   Plug 'junegunn/fzf.vim'
+  Plug 'neovimhaskell/haskell-vim'
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
   Plug 'neomake/neomake'
