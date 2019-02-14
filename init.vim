@@ -7,20 +7,24 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'scrooloose/nerdcommenter'
   Plug 'rust-lang/rust.vim'
   Plug 'Townk/vim-autoclose'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'tpope/vim-dadbod'
   Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'tpope/vim-rails'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'vim-scripts/YankRing.vim'
 call plug#end()
-
-colorscheme monokai
 
 set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
+
+colorscheme monokai
 
 set clipboard=unnamed
 set colorcolumn=80,100
@@ -35,33 +39,22 @@ set splitright
 set textwidth=100
 set undofile
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"Academia directories
+map <leader>app :cd ~/academia/projects/academia-app/<CR>
+map <leader>notes :cd ~/notes<CR>
+map <leader>wiki :cd ~/academia/wiki<CR>
 
-map <leader>app :cd ~/academia/projects/academia-app/<cr>
-map <leader>wiki :cd ~/academia/wiki<cr>
-map <leader>vimrc :tabe $MYVIMRC<cr>
-augroup reload_vimrc
-  autocmd!
-  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
-augroup END
-
-"Tags
-set tags=./.tags;/,.tags;/
-
-"Tabs
-set expandtab
-set smartindent
-set shiftwidth=2
-set tabstop=2
-
-"netrw
+"Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 10
+
+"Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 "Swap Windows
 function! MarkWindowSwap()
@@ -85,6 +78,32 @@ endfunction
 
 nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
 nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+"Tags
+set tags=./.tags;/,.tags;/
+
+"Tabs
+set expandtab
+set smartindent
+set shiftwidth=2
+set tabstop=2
+
+"Whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
+"Vimrc
+map <leader>vimrc :tabe $MYVIMRC<CR>
+augroup reload_vimrc
+  autocmd!
+  autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
+augroup END
+
+"Yank filename
+nmap yf :let @* = expand("%:p")<CR>
+
+"Fzf
+autocmd VimEnter * map <C-p> :Files<CR>
+map <C-M-p> :Buffers<CR>
 
 "Lightline
 let g:lightline = {
@@ -157,10 +176,6 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
-"Fzf
-map <C-p> :Files<cr>
-map <C-M-p> :Buffers<cr>
-
 "Neomake
 let g:neomake_rubocop_maker = {
       \ 'args': [
@@ -173,10 +188,14 @@ let g:neomake_rubocop_maker = {
       \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
       \ 'output_stream': 'stdout',
       \ }
+let g:neomake_javascript_enabled_makers = ['eslint']
 call neomake#configure#automake('w')
 
-nmap <leader>o :lopen<cr>
-nmap <leader>c :lclose<cr>
+nmap <leader>o :lopen<CR>
+nmap <leader>c :lclose<CR>
+
+"YankRing
+nnoremap <C-s> :YRShow<CR>
 
 "C
 augroup C
