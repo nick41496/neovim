@@ -50,12 +50,6 @@ let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 10
 
-"Split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 "Swap Windows
 function! MarkWindowSwap()
   let g:markedWinNum = winnr()
