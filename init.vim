@@ -1,11 +1,11 @@
 call plug#begin(stdpath('config') . '/plug')
   Plug 'junegunn/fzf.vim'
   Plug 'neovimhaskell/haskell-vim'
-  Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
   Plug 'neomake/neomake'
   Plug 'scrooloose/nerdcommenter'
   Plug 'rust-lang/rust.vim'
+  Plug 'nightsense/stellarized'
   Plug 'Townk/vim-autoclose'
   Plug 'kchmck/vim-coffee-script'
   Plug 'tpope/vim-dadbod'
@@ -24,7 +24,10 @@ set runtimepath+=~/src/fzf
 let &packpath = &runtimepath
 let mapleader = ","
 
-colorscheme monokai
+set termguicolors
+set background=dark
+colorscheme stellarized
+hi link Whitespace ColorColumn
 
 set clipboard=unnamed
 set colorcolumn=80,100
@@ -101,7 +104,7 @@ map <C-M-p> :Buffers<CR>
 
 "Lightline
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'stellarized_dark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
       \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -199,9 +202,8 @@ augroup END
 
 "Markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['ruby']
-let g:markdown_syntax_conceal = 0
-let g:markdown_minlines = 200
+set concealcursor=""
+set conceallevel=2
 
 "Ruby
 autocmd BufNewFile,BufRead *.rb set filetype=ruby
