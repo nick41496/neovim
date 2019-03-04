@@ -17,7 +17,6 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-surround'
   Plug 'christoomey/vim-tmux-navigator'
-  Plug 'vim-scripts/YankRing.vim'
 call plug#end()
 
 set runtimepath+=~/src/fzf
