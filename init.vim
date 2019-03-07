@@ -97,6 +97,10 @@ augroup END
 "Yank filename
 nmap yf :let @* = expand("%:p")<CR>
 
+"Dadbod
+vmap <leader>dmain :DB $MAIN_DB<CR>
+vmap <leader>ddev :DB $DEV_DB<CR>
+
 "Fzf
 autocmd VimEnter * map <C-p> :Files<CR>
 map <C-M-p> :Buffers<CR>
