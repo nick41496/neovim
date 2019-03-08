@@ -85,7 +85,7 @@ set shiftwidth=2
 set tabstop=2
 
 "Whitespace
-autocmd BufWritePre * %s/\s\+$//e
+nmap <leader>dw :%s/\s\+$//e<CR>:w<CR>
 
 "Vimrc
 map <leader>vimrc :tabe $MYVIMRC<CR>
