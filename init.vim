@@ -10,7 +10,6 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'kchmck/vim-coffee-script'
   Plug 'tpope/vim-dadbod'
   Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
   Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   Plug 'tpope/vim-rails'
@@ -191,8 +190,8 @@ let g:neomake_rubocop_maker = {
 let g:neomake_javascript_enabled_makers = ['eslint']
 call neomake#configure#automake('w')
 
-nmap <leader>o :lopen<CR>
-nmap <leader>c :lclose<CR>
+nmap <leader>lo :lopen<CR>
+nmap <leader>lc :lclose<CR>
 
 "YankRing
 nnoremap <C-s> :YRShow<CR>
