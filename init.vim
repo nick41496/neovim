@@ -97,8 +97,15 @@ augroup END
 nmap yf :let @* = expand("%:p")<CR>
 
 "Dadbod
-vmap <leader>dmain :DB $MAIN_DB<CR>
-vmap <leader>ddev :DB $DEV_DB<CR>
+augroup db_setup
+  autocmd bufread main.sql let b:db = $MAIN_DB
+  autocmd bufread mentions.sql let b:db = $MENTIONS_DB
+  autocmd bufread dev.sql let b:db = $DEV_DB
+  autocmd bufread redshift.sql let b:db = $REDSHIFT
+augroup END
+
+nmap Q :.DB<CR>
+vmap Q :DB<CR>
 
 "Fzf
 autocmd VimEnter * map <C-p> :Files<CR>
@@ -187,7 +194,16 @@ let g:neomake_rubocop_maker = {
       \ 'postprocess': function('neomake#makers#ft#ruby#RubocopEntryProcess'),
       \ 'output_stream': 'stdout',
       \ }
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['yarn']
+let g:neomake_yarn_maker = {
+      \ 'args': [
+      \   'lint',
+      \   '--format', 'compact'
+      \ ],
+      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+      \   '%W%f: line %l\, col %c\, Warning - %m, %-G, %-G%*\d problems%#',
+      \ 'output_stream': 'stdout',
+      \ }
 call neomake#configure#automake('w')
 
 nmap <leader>lo :lopen<CR>
