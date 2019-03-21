@@ -51,6 +51,12 @@ let g:netrw_browse_split = 4
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 10
 
+"Resize Panes
+nmap <C-w>h :vertical resize -10<CR>
+nmap <C-w>j :resize -10<CR>
+nmap <C-w>k :resize +10<CR>
+nmap <C-w>l :vertical resize +10<CR>
+
 "Swap Windows
 function! MarkWindowSwap()
   let g:markedWinNum = winnr()
@@ -83,6 +89,11 @@ set smartindent
 set shiftwidth=2
 set tabstop=2
 
+"Templates
+augroup templates
+  autocmd BufNewFile *.rb 0r ~/.config/nvim/templates/skeleton.rb
+augroup end
+
 "Whitespace
 nmap <leader>dw :%s/\s\+$//e<CR>:w<CR>
 
@@ -98,6 +109,7 @@ nmap yf :let @* = expand("%:p")<CR>
 
 "Dadbod
 augroup db_setup
+  autocmd bufread attention.sql let b:db = $ATTENTION_DB
   autocmd bufread main.sql let b:db = $MAIN_DB
   autocmd bufread mentions.sql let b:db = $MENTIONS_DB
   autocmd bufread dev.sql let b:db = $DEV_DB
