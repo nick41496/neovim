@@ -93,6 +93,7 @@ set tabstop=2
 "Templates
 augroup templates
   autocmd BufNewFile *.rb 0r ~/.config/nvim/templates/skeleton.rb
+  autocmd BufNewFile *_nf.md 0r ~/.config/nvim/templates/nf_skeleton.md
 augroup end
 
 "Whitespace
