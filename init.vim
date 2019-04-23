@@ -8,6 +8,7 @@ call plug#begin(stdpath('config') . '/plug')
   Plug 'nightsense/stellarized'
   Plug 'Townk/vim-autoclose'
   Plug 'kchmck/vim-coffee-script'
+  Plug 'skammer/vim-css-color'
   Plug 'tpope/vim-dadbod'
   Plug 'tpope/vim-fugitive'
   Plug 'pangloss/vim-javascript'
@@ -108,16 +109,28 @@ augroup END
 nmap yf :let @* = expand("%:p")<CR>
 
 "Dadbod
+function! Time(cmd) range
+  let starttime = reltime()
+  execute a:firstline . "," . a:lastline . a:cmd
+  let endtime = str2float(reltimestr(reltime(starttime)))
+  redraw!
+  echohl MoreMsg
+  echo printf("%.02g sec", endtime)
+  echohl None
+endfun
+
 augroup db_setup
   autocmd bufread attention.sql let b:db = $ATTENTION_DB
+  autocmd bufread email.sql let b:db = $EMAIL_DB
   autocmd bufread main.sql let b:db = $MAIN_DB
   autocmd bufread mentions.sql let b:db = $MENTIONS_DB
-  autocmd bufread dev.sql let b:db = $DEV_DB
   autocmd bufread redshift.sql let b:db = $REDSHIFT
+  autocmd bufread dev.sql let b:db = $DEV_DB
+  autocmd bufread dev_mentions.sql let b:db = $DEV_MENTIONS_DB
 augroup END
 
-nmap Q :.DB<CR>
-vmap Q :DB<CR>
+nmap Q :call Time(".DB")<CR>
+vmap Q :call Time("DB")<CR>
 
 "Fzf
 autocmd VimEnter * map <C-p> :Files<CR>
@@ -220,9 +233,6 @@ call neomake#configure#automake('w')
 
 nmap <leader>lo :lopen<CR>
 nmap <leader>lc :lclose<CR>
-
-"YankRing
-nnoremap <C-s> :YRShow<CR>
 
 "C
 augroup C
