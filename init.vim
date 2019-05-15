@@ -46,6 +46,9 @@ map <leader>app :cd ~/academia/projects/academia-app/<CR>
 map <leader>notes :cd ~/notes<CR>
 map <leader>wiki :cd ~/academia/wiki<CR>
 
+"Copy
+nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
+
 "Netrw
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
@@ -126,6 +129,7 @@ augroup db_setup
   autocmd bufread main.sql let b:db = $MAIN_DB
   autocmd bufread mentions.sql let b:db = $MENTIONS_DB
   autocmd bufread redshift.sql let b:db = $REDSHIFT
+  autocmd bufread qa_redshift.sql let b:db = $QA_REDSHIFT
   autocmd bufread dev.sql let b:db = $DEV_DB
   autocmd bufread dev_mentions.sql let b:db = $DEV_MENTIONS_DB
 augroup END
