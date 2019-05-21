@@ -214,8 +214,10 @@ let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
 "Neomake
-let g:neomake_rubocop_maker = {
+let g:neomake_ruby_enabled_makers = ['bundle']
+let g:neomake_bundle_maker = {
       \ 'args': [
+      \   'exec', 'rubocop',
       \   '--require', 'rubocop-rspec',
       \   '--format', 'emacs',
       \   '--force-exclusion',
