@@ -31,6 +31,7 @@ set colorcolumn=80,100
 set linebreak
 set list
 set noshowmode
+set nowrap
 set relativenumber
 set scrolloff=7
 set spell
@@ -129,6 +130,7 @@ augroup db_setup
   autocmd bufread redshift.sql let b:db = $REDSHIFT
   autocmd bufread qa_redshift.sql let b:db = $QA_REDSHIFT
   autocmd bufread dev.sql let b:db = $DEV_DB
+  autocmd bufread dev_attention.sql let b:db = $DEV_ATTENTION_DB
   autocmd bufread dev_mentions.sql let b:db = $DEV_MENTIONS_DB
 augroup END
 
